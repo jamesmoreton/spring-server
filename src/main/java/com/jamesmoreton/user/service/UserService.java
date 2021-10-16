@@ -54,7 +54,8 @@ public class UserService {
 
   public void updateUser(UUID userUid, UserUpdateRequest request) {
     final User user = Optional.ofNullable(userMap.get(userUid))
-        .orElseThrow(() ->RequestValidationException.forCode(USER_NOT_FOUND, "User to update not found"));
+        .orElseThrow(() -> RequestValidationException.forCode(
+            USER_NOT_FOUND, "User to update not found"));
     logger.info("Updating user {} to {}", userUid, request.getUserType());
 
     final User updated = new User(
