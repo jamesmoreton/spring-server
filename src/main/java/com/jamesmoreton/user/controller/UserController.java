@@ -39,23 +39,25 @@ public class UserController {
     return userService.createUser(userCreateRequest);
   }
 
-  @PutMapping(path = {"{userUid}"}, consumes = APPLICATION_JSON_VALUE)
-  void updateUser(@PathVariable("userUid") UUID userUid, @RequestBody @Valid UserUpdateRequest userUpdateRequest) {
+  @PutMapping(path = "{userUid}", consumes = APPLICATION_JSON_VALUE)
+  void updateUser(@PathVariable("userUid") UUID userUid,
+                  @RequestBody @Valid UserUpdateRequest userUpdateRequest) {
     userService.updateUser(userUid, userUpdateRequest);
   }
 
-  @DeleteMapping(path = {"{userUid}"})
+  @DeleteMapping(path = "{userUid}")
   void deleteUser(@PathVariable("userUid") UUID userUid) {
     userService.deleteUser(userUid);
   }
 
-  @GetMapping(path = {"{userUid}"}, produces = APPLICATION_JSON_VALUE)
+  @GetMapping(path = "{userUid}", produces = APPLICATION_JSON_VALUE)
   Optional<User> getUser(@PathVariable("userUid") UUID userUid) {
     return userService.getUser(userUid);
   }
 
   @GetMapping(produces = APPLICATION_JSON_VALUE)
-  Users getUsers(@RequestParam(value = "userType", required = false) UserType userType, @RequestParam(value = "countryCode", required = false) CountryCode countryCode) {
+  Users getUsers(@RequestParam(value = "userType", required = false) UserType userType,
+                 @RequestParam(value = "countryCode", required = false) CountryCode countryCode) {
     return userService.getUsers(userType, countryCode);
   }
 }
